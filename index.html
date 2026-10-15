@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Symber: бесплатное обучение менеджеров маркетплейсов</title>
+<meta name="description" content="Бесплатный видеокурс по профессии менеджера маркетплейсов с нуля: от основ профессии до самостоятельного поиска клиентов.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f6f5fb;
+    --text: #1b1830;
+    --muted: #62607a;
+    --line: #e7e5f0;
+    --violet: #7b2ff7;
+    --blue: #2563eb;
+    --grad: linear-gradient(120deg, #7b2ff7 0%, #4f46e5 50%, #2563eb 100%);
+    --nav-h: 68px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  h1, h2, h3 { line-height: 1.2; margin: 0; }
+  p { margin: 0 0 14px; }
+
+  /* ---------- Шапка ---------- */
+  header {
+    position: sticky; top: 0; z-index: 20; height: var(--nav-h);
+    background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 20px; white-space: nowrap; }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 10px; background: var(--grad);
+    display: grid; place-items: center; color: #fff; font-size: 14px; font-weight: 800; letter-spacing: .5px;
+  }
+  nav { display: flex; gap: 4px; overflow-x: auto; }
+  nav a {
+    padding: 8px 14px; border-radius: 999px; white-space: nowrap;
+    color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 600;
+    transition: background .2s, color .2s;
+  }
+  nav a:hover { color: var(--text); background: var(--bg-alt); }
+  nav a.active { color: #fff; background: var(--grad); }
+
+  /* ---------- Главный экран ---------- */
+  .hero { position: relative; overflow: hidden; padding: 72px 0 64px; background: var(--bg-alt); }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; border-radius: 50%; filter: blur(70px); opacity: .35; z-index: 0;
+  }
+  .hero::before { width: 420px; height: 420px; background: #7b2ff7; top: -120px; right: -80px; }
+  .hero::after  { width: 360px; height: 360px; background: #2563eb; bottom: -160px; left: -100px; }
+  .hero .wrap { position: relative; z-index: 1; }
+  .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+    background: #fff; border: 1px solid var(--line); font-size: 14px; font-weight: 700; color: var(--violet);
+  }
+  .hero h1 { font-size: clamp(30px, 4.6vw, 54px); margin-bottom: 18px; max-width: 900px; }
+  .hero h1 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { font-size: 19px; color: var(--muted); max-width: 720px; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+  .stat { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+  .stat b { display: block; font-size: 34px; line-height: 1.1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat span { font-size: 15px; color: var(--muted); line-height: 1.35; display: block; margin-top: 6px; }
+
+  /* ---------- Разделы ---------- */
+  section.block { padding: 80px 0; }
+  section.block.alt { background: var(--bg-alt); }
+  .eyebrow { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--violet); margin-bottom: 10px; }
+  .block h2 { font-size: clamp(26px, 3.4vw, 38px); margin-bottom: 14px; }
+  .block .sub { color: var(--muted); max-width: 620px; margin-bottom: 36px; }
+
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(79,70,229,.35); }
+  .icon {
+    width: 48px; height: 48px; border-radius: 14px; background: var(--grad);
+    display: grid; place-items: center; margin-bottom: 16px;
+  }
+  .icon svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card h3 { font-size: 19px; margin-bottom: 8px; }
+  .card p { color: var(--muted); font-size: 16px; margin: 0; }
+
+  /* Программа */
+  .steps { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
+  .step { position: relative; padding: 22px; border-radius: 18px; background: var(--bg-alt); }
+  .step::before {
+    counter-increment: s; content: "0" counter(s);
+    display: block; font-weight: 800; font-size: 26px; margin-bottom: 10px;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .step h3 { font-size: 17px; margin-bottom: 6px; }
+  .step p { font-size: 15px; color: var(--muted); margin: 0; }
+
+  /* Отзывы */
+  .review { display: flex; flex-direction: column; }
+  .review .head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid #fff; box-shadow: 0 0 0 2px #c7c2f0; }
+  .review .name { font-weight: 700; }
+  .review .meta { font-size: 14px; color: var(--muted); }
+  .review .text { color: var(--text); font-size: 16px; flex: 1; }
+  .stars { color: #f59e0b; letter-spacing: 2px; margin-top: 12px; }
+
+  /* О компании */
+  .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+  .about-panel { background: var(--grad); color: #fff; border-radius: 22px; padding: 30px; }
+  .about-panel .k { font-size: 40px; font-weight: 800; line-height: 1; }
+  .about-panel .v { opacity: .85; margin: 6px 0 22px; }
+  .about-panel .v:last-child { margin-bottom: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .chip { padding: 6px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 13px; color: var(--muted); }
+  footer p { margin: 0 0 4px; }
+  footer .logo { font-size: 16px; margin-bottom: 10px; }
+  footer .logo-mark { width: 28px; height: 28px; font-size: 11px; border-radius: 8px; }
+
+  /* Появление при прокрутке */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 960px) {
+    .grid-4, .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 800px) {
+    .about, .grid-3 { grid-template-columns: 1fr; }
+    .hero { padding: 48px 0; }
+    section.block { padding: 56px 0; }
+    .logo { font-size: 17px; }
+    .logo-mark { width: 30px; height: 30px; font-size: 12px; }
+    nav a { padding: 7px 10px; font-size: 14px; }
+  }
+  @media (max-width: 520px) {
+    .grid-4, .steps { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .logo span.txt { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="logo-mark">S</span><span class="txt">Symber</span></a>
+    <nav>
+      <a href="#why">Почему мы</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#about">О компании</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ГЛАВНЫЙ ЭКРАН -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="badge">Бесплатное обучение</div>
+        <h1>Менеджер маркетплейсов — <span>начни зарабатывать из дома</span></h1>
+        <p class="lead">Бесплатный видеокурс для тех, кто начинает без опыта или хочет сменить сферу: от основ профессии до самостоятельного поиска первых клиентов.</p>
+        <div class="stats">
+          <div class="stat"><b>2,5 года</b><span>работаем с маркетплейсами</span></div>
+          <div class="stat"><b>3000+</b><span>человек прошли обучение</span></div>
+          <div class="stat"><b>от 80 000 ₽</b><span>доход выпускников в месяц*</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ПОЧЕМУ МЫ -->
+  <section class="block" id="why">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">Почему мы</div>
+        <h2>Всё о профессии в подробных видеоуроках</h2>
+        <p class="sub">Курс построен так, чтобы разобраться самостоятельно: что делает менеджер, как выполнять задачи и где искать заказчиков.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg></div>
+          <h3>С нуля</h3>
+          <p>Не нужен опыт в торговле или маркетинге. Начинаем с того, что это за профессия.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div>
+          <h3>Детальный разбор</h3>
+          <p>Каждая задача менеджера разобрана в видео пошагово: что делать и в каком порядке.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20c-.5-2.4-1.8-4.1-3.6-4.9"/></svg></div>
+          <h3>Поиск клиентов</h3>
+          <p>Отдельный блок уроков о том, где и как самостоятельно находить первых заказчиков.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+          <h3>Оперативный доступ</h3>
+          <p>Быстро открываем доступ к обучению. Смотрите уроки в удобное время.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal"><h3>Профессия</h3><p>Кто такой менеджер маркетплейсов и чем он занимается.</p></div>
+        <div class="step reveal"><h3>Обязанности</h3><p>Карточки товаров, цены и акции, реклама, поставки, аналитика.</p></div>
+        <div class="step reveal"><h3>Задачи</h3><p>Пошаговый разбор, как выполнять каждую задачу.</p></div>
+        <div class="step reveal"><h3>Клиенты</h3><p>Где искать продавцов и как самостоятельно договариваться о работе.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="block alt" id="reviews">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="eyebrow">Отзывы</div>
+        <h2>Курс подходит людям в разных ситуациях</h2>
+        <p class="sub">Студенты, жители небольших населённых пунктов, те, кто ищет новое направление: отзывы учеников, прошедших обучение.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card review reveal">
+          <div class="head"><img class="avatar" src="data:image/jpeg;base64,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" alt="Александра"><div><div class="name">Александра</div><div class="meta">19 лет · студентка</div></div></div>
+          <p class="text">Учусь на программиста и поняла, что это не совсем моё. Во время учёбы нужен был заработок и хотелось попробовать востребованное направление! Обучилась быстро и теперь применяю знания в работе. Доход меня устраивает. Огромное спасибо ребятам за такой понятный курс!</p>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="card review reveal">
+          <div class="head"><img class="avatar" src="data:image/jpeg;base64,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" alt="Виталий"><div><div class="name">Виталий</div><div class="meta">37 лет · живёт далеко от города</div></div></div>
+          <p class="text">Живу далеко от города, работы рядом немного. Искал дополнительный заработок без переезда. Обучение подошло: всё по делу, чётко и понятно. Посмотрел и применил. Работает.</p>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="card review reveal">
+          <div class="head"><img class="avatar" src="data:image/jpeg;base64,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" alt="Диана"><div><div class="name">Диана</div><div class="meta">24 года · пришла по рекомендации</div></div></div>
+          <p class="text">Давно интересовалась маркетплейсами: направление актуальное. О курсе узнала по рекомендации и из всех вариантов выбрала его. Он помог быстро начать работать в этой сфере.</p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- О КОМПАНИИ -->
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="reveal">
+        <div class="eyebrow">О компании</div>
+        <h2>Команда Symber работает с маркетплейсами</h2>
+        <p>Мы два с половиной года работаем с маркетплейсами и собрали этот опыт в видеокурс. Обучение бесплатное и рассчитано на тех, кто начинает с нуля.</p>
+        <p>Наша задача: после курса человек понимает профессию, знает задачи менеджера и может сам найти первых клиентов.</p>
+        <div class="chips">
+          <span class="chip">Wildberries</span>
+          <span class="chip">Ozon</span>
+          <span class="chip">Яндекс Маркет</span>
+        </div>
+      </div>
+      <div class="about-panel reveal">
+        <div class="k">2,5 года</div><div class="v">работы с маркетплейсами</div>
+        <div class="k">3000+</div><div class="v">выпускников</div>
+        <div class="k">0 ₽</div><div class="v">стоимость обучения</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="logo-mark">S</span>Symber</div>
+    <p>© 2026 Symber</p>
+    <p>* По данным Symber о выпускниках курса. Доход зависит от опыта, нагрузки и числа клиентов и не гарантируется.</p>
+    <p>Wildberries, Ozon и Яндекс Маркет являются товарными знаками их правообладателей. Symber не является официальным партнёром или представителем этих площадок.</p>
+  </div>
+</footer>
+
+<script>
+  // Активный пункт меню
+  const links = document.querySelectorAll('nav a');
+  const secs = [...links].map(a => document.querySelector(a.getAttribute('href')));
+  function setActive() {
+    const y = window.scrollY + 140;
+    let cur = null;
+    secs.forEach(s => { if (s.offsetTop <= y) cur = s; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) cur = secs[secs.length - 1];
+    links.forEach(a => a.classList.toggle('active', cur && a.getAttribute('href') === '#' + cur.id));
+  }
+  addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // Появление блоков
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
